@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GWRC - 1.0 {% endblock %}
+{% block main %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Home
+            <small>GWRC - 1.0</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+
+        </ol>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-purple">
+                    <div class="inner">
+
+                        <h3>{{ qtd_agentes }}</h3>
+
+                        <p>Total Agentes</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person"></i>
+                    </div>
+                    <a href="{% url 'detail_agente' %}"  class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-purple">
+                    <div class="inner">
+                        <h3>{{ qtd_subagentes }}</h3>
+                        <p>Total Sub-Agentes</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-stalker"></i>
+                    </div>
+                    <a href="{% url 'detail_subAgent' %}" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-purple">
+                    <div class="inner">
+                        <h3>{{ qtd_mobiles }}</h3>
+                        <p>Total Mobiles</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-iphone"></i>
+                    </div>
+                    <a href="{% url 'detail_msisdn' %}" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-purple">
+                    <div class="inner">
+                        <h3>{{ qtd_msisdns }}</h3>
+                        <p>Total Msisdns</p>
+                    </div>
+                    <div class="icon">
+                        <i class="icon ion-social-android"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Mais Informações <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">Pedidos e respostas dos Terminais</h3>
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table id="malebo" class="table table-hover table-bordered dataTable js-exportable"">
+                            <tr class="bg-purple-active color-palette">
+                                <th>Data Recepção</th>
+                                <th>Mobile Msisdn</th>
+                                <th>Proxy</th>
+                                <th>Tipo Operação</th>
+                                <th>Codigo Erro</th>
+                                <th>Gateway</th>
+                                <th>Imei</th>
+                                <th>Versão App</th>
+                            </tr>
+                             {% for sms_lists in sms_list %}
+                                <tr>
+                                    <td>{{ sms_lists.date_received }}</td>
+                                    <td>{{ sms_lists.originator_msisdn }}</td>
+                                    <td>{{ sms_lists.proxy_id }}</td>
+                                    <td>{{ sms_lists.operation_type }}</td>
+                                    <td>{{ sms_lists.error_code }}</td>
+                                    <td>{{ sms_lists.sms_history_id }}</td>
+                                    <td>{{ sms_lists.imei }}</td>
+                                    <td>{{ sms_lists.app_version }}</td>
+                                </tr>
+                                {% endfor %}
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+</div>
+
+<script type="text/javascript" src="{% static 'js_costum/export_file.js' %}"></script>
+
+{% endblock %}

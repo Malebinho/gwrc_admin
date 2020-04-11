@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GWRC - 1.0 {% endblock %}
+{% block main %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Getaways
+            <small>GWRC - 1.0</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'list' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Getaways</a></li>
+
+        </ol>
+    </section>
+
+    <section class="content">
+         <!-- Tabela de pedidos e respostas -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-danger">
+                    <div class="box-header btn-default">
+                        <i class="ion ion-iphone"></i>
+                        <h3 class="box-title">Pedidos Gateways de Registo de Clientes</h3>
+                    </div>
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                    <!-- /CODIGO DO GRAFICO DA GWRC-01  -->
+
+                        <div class="col-md-6">
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <i class="fa fa-server"></i>
+
+                                    <h3 class="box-title">GWRC #02</h3>
+
+                                </div>
+                                <div class="box-body">
+                                    <canvas id="chart-gw-01" width="800" height="450"></canvas>
+                                </div>
+                                <div class="box-footer no-padding">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>Operação</th>
+                                            <th><span class="pull-right">Qtd de pedidos</span></th>
+                                        </tr>
+                                        </tr>
+                                        {% for rows_operation_gwrcs in count_operation_gwrc %}
+                                        <tr>
+                                            {% if rows_operation_gwrcs.operation_type == 1 %}
+                                            <td class="bg-light-blue-active disabled">{{ rows_operation_gwrcs.operation_type }} - LOGIN</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs.operation_type == 2 %}
+                                            <td class="bg-orange-active disabled ">{{ rows_operation_gwrcs.operation_type }} - PRÉ-REGISTO</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs.operation_type == 3 %}
+                                            <td class="bg-purple-active" >{{ rows_operation_gwrcs.operation_type }} - UPLOAD DE IMAGEM</td>
+                                            {% endif %}
+                                            <td><span class="badge bg-orange pull-right">
+                                                {{ rows_operation_gwrcs.my_count }}
+                                            </span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                       <!-- /CODIGO DO GRAFICO DA PROXIE-02  -->
+
+                        <div class="col-md-6">
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <i class="fa fa-server"></i>
+
+                                    <h3 class="box-title">GWRC #03</h3>
+
+                                </div>
+                                <div class="box-body">
+                                    <canvas id="chart-gw-02" width="800" height="450"></canvas>
+                                </div>
+                                <div class="box-footer no-padding">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>Operação</th>
+                                            <th><span class="pull-right">Qtd de pedidos</span></th>
+                                        </tr>
+                                        </tr>
+                                        {% for rows_operation_gwrcs2 in count_operation_gwrc2 %}
+                                        <tr>
+                                            {% if rows_operation_gwrcs2.operation_type == 1 %}
+                                            <td class="bg-light-blue-active disabled">{{ rows_operation_gwrcs2.operation_type }} - LOGIN</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs2.operation_type == 2 %}
+                                            <td class="bg-orange-active disabled ">{{ rows_operation_gwrcs2.operation_type }} - PRÉ-REGISTO</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs2.operation_type == 3 %}
+                                            <td class="bg-purple-active" >{{ rows_operation_gwrcs2.operation_type }} - UPLOAD DE IMAGEM</td>
+                                            {% endif %}
+                                            <td><span class="badge bg-orange pull-right">
+                                                {{ rows_operation_gwrcs2.my_count }}
+                                            </span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+ <!-- /CODIGO DO GRAFICO DA PROXIE-03  -->
+
+                        <div class="col-md-6">
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <i class="fa fa-server"></i>
+
+                                    <h3 class="box-title">GWRC #04</h3>
+
+                                </div>
+                                <div class="box-body">
+                                      {% if count_operation_gwrc3.operation_type == " " %}
+                                    <td> <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alerta! - Verificar os dados da GWRC #05</h4>
+                                                            Não existem dados para mostrar nesta gateway de Registo de Clientes.
+
+              </div></td>
+                                    {% endif %}
+                                    <canvas id="chart-gw-03" width="800" height="450"></canvas>
+                                </div>
+                                <div class="box-footer no-padding">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>Operação</th>
+                                            <th><span class="pull-right">Qtd de pedidos</span></th>
+                                        </tr>
+                                        </tr>
+                                        {% for rows_operation_gwrcs3 in count_operation_gwrc3 %}
+                                        <tr>
+                                            {% if rows_operation_gwrcs3.operation_type == 1 %}
+                                            <td class="bg-light-blue-active disabled">{{ rows_operation_gwrcs3.operation_type }} - LOGIN</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs3.operation_type == 2 %}
+                                            <td class="bg-orange-active disabled ">{{ rows_operation_gwrcs3.operation_type }} - PRÉ-REGISTO</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs3.operation_type == 3 %}
+                                            <td class="bg-purple-active" >{{ rows_operation_gwrcs3.operation_type }} - UPLOAD DE IMAGEM</td>
+                                            {% endif %}
+                                            <td><span class="badge bg-orange pull-right">
+                                                {{ rows_operation_gwrcs3.my_count }}
+                                            </span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                         <!-- /CODIGO DO GRAFICO DA PROXIE-04  -->
+
+                        <div class="col-md-6">
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <i class="fa fa-server"></i>
+
+                                    <h3 class="box-title">GWRC #05</h3>
+
+                                </div>
+                                <div class="box-body">
+
+                                    <canvas id="chart-gw-04" width="800" height="450"></canvas>
+
+
+                                </div>
+                                <div class="box-footer no-padding">
+                                    <table class="table table-striped ">
+                                        <tr>
+                                            <th>Operação</th>
+                                            <th><span class="pull-right">Qtd de pedidos</span></th>
+                                        </tr>
+
+                                        </tr>
+                                        {% for rows_operation_gwrcs4 in count_operation_gwrc4 %}
+
+                                        <tr>
+                                            {% if rows_operation_gwrcs4.operation_type == 1 %}
+                                            <td class="bg-light-blue-active disabled">{{ rows_operation_gwrcs4.operation_type }} - LOGIN</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs4.operation_type == 2 %}
+                                            <td class="bg-orange-active disabled ">{{ rows_operation_gwrcs4.operation_type }} - PRÉ-REGISTO</td>
+                                            {% endif %}
+                                            {% if rows_operation_gwrcs4.operation_type == 3 %}
+                                            <td class="bg-purple-active" >{{ rows_operation_gwrcs4.operation_type }} - UPLOAD DE IMAGEM</td>
+                                            {% endif %}
+                                            <td><span class="badge bg-orange pull-right">
+                                                {{ rows_operation_gwrcs4.my_count }}
+                                            </span>
+                                            </td>
+
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </section>
+</div>
+
+
+<script src="{% static 'dist/js/js_charts/jquery.min.js' %}"></script>
+
+<script src="'{% static 'dist/js/js_charts/Chart.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js_costum/charts_function_gw.js' %}"></script>
+{% endblock %}

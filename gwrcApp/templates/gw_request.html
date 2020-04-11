@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GWRC - 1.0 {% endblock %}
+{% block main %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Requisiçoes
+            <small>GWRC - 1.0</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'list' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Requisiçoes</a></li>
+
+        </ol>
+    </section>
+
+    <section class="content">
+
+
+        <!-- Tabela de processos -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">Quantificação de Requisições</h3>
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover table-bordered">
+                            <tr class="bg-purple-active color-palette">
+                                <th>Metodo</th>
+                                <th>Codigo de Erro EAI</th>
+                                <th>Gateway</th>
+                                <th>Quantidade</th>
+                            </tr>
+                            {% for row_request_gwrcs in row_request_gwrc %}
+
+                            <td>{{ row_request_gwrcs.method }}</td>
+                            <td>
+                                {{ row_request_gwrcs.eai_error_code }}
+                            </td>
+                            <td>
+                                {{ row_request_gwrcs.eai_cdr_history_id }}
+                            </td>
+                            <td><span class="badge bg-orange pull-right">{{ row_request_gwrcs.my_count_cdr }}</span>
+                            </td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">Pedidos e requisições dos terminais</h3>
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover table-bordered">
+                            <tr class="bg-purple-active color-palette">
+                                <th>Data Criação</th>
+                                <th>Metodo</th>
+                                <th>Request ID</th>
+                                <th>Codigo de Erro EAI</th>
+                                <th>Mensagem ERRO</th>
+                                <th>Gateway</th>
+                            </tr>
+                             {% for request_lists in request_list %}
+                            <td>{{ request_lists.created_date }}</td>
+                            <td>{{ request_lists.method }}</td>
+                            <td>{{ request_lists.request_id }}</td>
+                            <td>{{ request_lists.eai_error_code }}</td>
+                            <td>{{ request_lists.eai_error_message }}</td>
+                            <td>{{ request_lists.eai_cdr_history_id }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Tabela de pedidos e respostas -->
+
+</div>
+
+{% endblock %}

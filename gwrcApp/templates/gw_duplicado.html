@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GWRC - 1.0 {% endblock %}
+{% block main %}
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Propriedades
+            <small>GWRC - 1.0</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'list' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Propriedades</a></li>
+
+        </ol>
+    </section>
+
+<section class="content">
+
+
+        <!-- Tabela de processos -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">Quantificação de regidtos duplicados</h3>
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover table-bordered">
+                            <tr class="bg-purple-active color-palette">
+                                <th>Quantidade</th>
+                                <th>MSISDN</th>
+                                <th>Agente</th>
+                                <th>Data</th>
+                            </tr>
+                            {% for row_request_gwrcs in row_request_gwrc %}
+
+                            <td>{{ row_request_gwrcs.method }}</td>
+                            <td>
+                                {{ row_request_gwrcs.eai_error_code }}
+                            </td>
+                            <td>
+                                {{ row_request_gwrcs.eai_cdr_history_id }}
+                            </td>
+                            <td><span class="badge bg-orange pull-right">{{ row_request_gwrcs.my_count_cdr }}</span>
+                            </td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+
+
+    </section>
+
+     <!-- Main content -->
+
+    <!-- /.content -->
+</div>
+
+
+{% endblock %}

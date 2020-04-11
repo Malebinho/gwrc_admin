@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Acessar | GWRC-1.0</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'dist/css/css.css' %}">
+
+    <link rel="stylesheet" href="{% static 'dist/css/gwrc_style.css' %}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{% static 'plugins/iCheck/square/blue.css' %}">
+
+
+    <!-- Google Font -->
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <span><img src="{% static 'dist/img/logo.png' %}" alt="User Image"></span>
+    </div>
+
+    <div class="login-box-body box">
+        <div class="info-box bg-purple-active">
+            <span class="info-box-icon"><i class="fa fa-user"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-number">Inicie a sua sessão</span>
+
+                <div class="progress">
+                    <div class="progress-bar" style="width: 80%"></div>
+                </div>
+
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+
+        <form action="submit" method="post"> {% csrf_token %}
+            {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong><i class="icon fa fa-ban"></i>Alerta! </strong>{{ message }}
+            </div>
+            {% endfor %}
+            <div class="form-group has-feedback">
+                <input type="name" name="username" class="form-control" placeholder="Utilizador"  required="true">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" name="password" class="form-control" placeholder="Palavra passe" required="true">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+
+            <div class="box-footer">
+
+                <button type="submit" style="background: #EE7402; color: #fff;" class="btn pull-right">Entrar</button>
+            </div>
+
+                <label class="control-label" ><a href="{% url 'reset_password' %}" style="color: #EE7402;"><i class="fa fa-key"></i> Esqueci-me da senha</a></label>
+
+        </form>
+    </div>
+
+
+</div>
+<!-- /.login-box-body -->
+</div>
+
+
+</body>
+</html>

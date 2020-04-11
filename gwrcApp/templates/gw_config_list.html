@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GWRC - 1.0 {% endblock %}
+{% block main %}
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>
+            Propriedades
+            <small>GWRC - 1.0</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{% url 'list' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Propriedades</a></li>
+
+        </ol>
+    </section>
+
+
+    <section class="content">
+
+
+        <!-- Tabela de processos -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">Configuraçoes das Gateways</h3>
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover table-bordered">
+                            <tr class="bg-purple-active color-palette">
+                                <th>Module</th>
+                                <th>Gateway</th>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                            {% for configure_prot_lists in configure_prot_list %}
+
+                            <td>{{ configure_prot_lists.module }}</td>
+                            <td>
+                                {{ configure_prot_lists.module_id }}
+                            </td>
+                            <td>
+                                {{ configure_prot_lists.value }}
+                            </td>
+                            <td>{{ configure_prot_lists.description }}
+                            </td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+
+
+    </section>
+
+</div>
+
+{% endblock %}

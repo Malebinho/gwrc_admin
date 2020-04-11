@@ -1,0 +1,16 @@
+Malebo
+
+<form action="" method="post"> {% csrf_token %}
+
+<textarea name="numero" rows="10" cols="20">
+</textarea>
+    <input type="submit">
+</form>
+
+
+{% for product in list_user %}
+            <tr>
+                <td><h5>{{ product.doc_name }}</h5>
+                <td><p><strong>£ {{ product.sim_msisdn }}</strong></p></td>
+            </tr>
+            {% endfor %}
